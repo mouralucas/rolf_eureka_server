@@ -1,0 +1,17 @@
+services:
+  eureka-server:
+    image: 'mouralucas/rolf-services:eureka-server'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - eureka_host_name=$eureka_host_name
+    networks:
+      - eureka-network
+
+networks:
+  eureka-network:
+    driver: bridge
